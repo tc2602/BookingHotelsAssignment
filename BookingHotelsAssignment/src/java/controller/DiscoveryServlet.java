@@ -5,13 +5,16 @@
  */
 package controller;
 
+import dal.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Filter;
+import model.Homestay;
 
 /**
  *
@@ -36,7 +39,7 @@ public class DiscoveryServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet DiscoveryServlet</title>");            
+            out.println("<title>Servlet DiscoveryServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet DiscoveryServlet at " + request.getContextPath() + "</h1>");
@@ -57,20 +60,20 @@ public class DiscoveryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String address = request.getParameter("address");
         if ("".equals(address) || address == null) {
             address = null;
         }
-        
+
         String type_raw = request.getParameter("type");
         int type;
-        if("".equals(type_raw)|| type_raw == null) {
+        if ("".equals(type_raw) || type_raw == null) {
             type = 0;
         } else {
-                type = Integer.parseInt(type_raw);
+            type = Integer.parseInt(type_raw);
         }
-        
+
         String price_raw = request.getParameter("price");
         double price;
         if ("0".equals(price_raw)|| price_raw == null) {
@@ -79,19 +82,52 @@ public class DiscoveryServlet extends HttpServlet {
         {
             price = Double.parseDouble(price_raw);
         }
-        
+
         String people_raw = request.getParameter("people");
         int people;
-        if ("".equals(people_raw)|| people_raw == null) {
+        if ("".equals(people_raw) || people_raw == null) {
             people = 0;
         } else {
             people = Integer.parseInt(people_raw);
         }
-        
+
         Filter filter = new Filter(address, type, price, people);
         request.setAttribute("filter", filter);
+
+        DAO db = new DAO();
+        List<Homestay> list = db.getAllHomestayByFilter(address, type, price, type);
+        int size = list.size();
+        int numPerPage = 12;
+        int numPage;
+        numPage = size / numPerPage + (size % numPerPage == 0 ? 0 : 1);
+
+        int page;
+        String mpage = request.getParameter("page");
+        if (mpage == null) {
+            page = 1;
+        } else {
+            page = Integer.parseInt(mpage);
+        }
+
+        int start, end;
+        start = (page - 1) * numPerPage;
+        if (page * numPerPage > size) {
+            end = size;
+        } else {
+            end = page * numPerPage;
+        }
+
+        List<Homestay> arr = db.getHomestayByPage(list, start, end);
+
+        request.setAttribute("numPage", numPage);
+        request.setAttribute("page", page);
+        request.setAttribute("arr", arr);
+        request.setAttribute("list", list);
+
+        String url = request.getServletPath();
+        request.setAttribute("url", url);
         
-        
+        request.getRequestDispatcher("discovery.jsp").forward(request, response);
     }
 
     /**
