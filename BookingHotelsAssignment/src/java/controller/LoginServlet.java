@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
@@ -76,15 +76,21 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
-        
+
         DAO db = new DAO();
         Account ac = db.getAccount(user, pass);
         Customer cus = new Customer();
-        if(ac==null){
+        if (ac == null) {
             //invalid
             request.setAttribute("error", "Invalid Account!");
             request.getRequestDispatcher("login.jsp").forward(request, response);
-        //Buồn ngủ quá nên dừng tại đây. Mai làm tiếp
+        } else {
+            //valid
+            cus = db.getCustomerById(ac.getCusID());
+            HttpSession session = request.getSession();
+            session.setAttribute("account", ac);
+            session.setAttribute("customer", cus);
+            response.sendRedirect("home.jsp");
         }
     }
 
