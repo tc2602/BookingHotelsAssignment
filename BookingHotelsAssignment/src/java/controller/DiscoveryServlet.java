@@ -76,10 +76,9 @@ public class DiscoveryServlet extends HttpServlet {
 
         String price_raw = request.getParameter("price");
         double price;
-        if ("0".equals(price_raw)|| price_raw == null) {
+        if ("0".equals(price_raw) || price_raw == null) {
             price = 0;
-        }else 
-        {
+        } else {
             price = Double.parseDouble(price_raw);
         }
 
