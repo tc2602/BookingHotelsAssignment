@@ -32,6 +32,10 @@
         <servlet-name>DiscoveryServlet</servlet-name>
         <servlet-class>controller.DiscoveryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HistoryServlet</servlet-name>
+        <servlet-class>controller.HistoryServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DetailServlet</servlet-name>
         <url-pattern>/detail</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>DiscoveryServlet</servlet-name>
         <url-pattern>/DiscoveryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HistoryServlet</servlet-name>
+        <url-pattern>/HistoryServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
