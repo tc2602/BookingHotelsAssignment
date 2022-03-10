@@ -66,11 +66,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DiscoveryServlet</servlet-name>
-        <url-pattern>/DiscoveryServlet</url-pattern>
+        <url-pattern>/discovery</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HistoryServlet</servlet-name>
-        <url-pattern>/HistoryServlet</url-pattern>
+        <url-pattern>/history</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
