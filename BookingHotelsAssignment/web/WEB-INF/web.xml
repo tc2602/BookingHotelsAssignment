@@ -36,6 +36,10 @@
         <servlet-name>HistoryServlet</servlet-name>
         <servlet-class>controller.HistoryServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IncomeServlet</servlet-name>
+        <servlet-class>controller.IncomeServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DetailServlet</servlet-name>
         <url-pattern>/detail</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>HistoryServlet</servlet-name>
         <url-pattern>/history</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IncomeServlet</servlet-name>
+        <url-pattern>/income</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
