@@ -38,7 +38,7 @@ public class IncomeServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet IncomeServlet</title>");            
+            out.println("<title>Servlet IncomeServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet IncomeServlet at " + request.getContextPath() + "</h1>");
@@ -65,20 +65,39 @@ public class IncomeServlet extends HttpServlet {
         int size = list.size();
         int numPerPage = 10;
         int numPage;
-        numPage  = size / numPerPage + (size%numPerPage == 0 ? 0 : 1);
-        
+        numPage = size / numPerPage + (size % numPerPage == 0 ? 0 : 1);
+
         int page;
         String mpage = request.getParameter("page");
         if (mpage == null) {
             page = 1;
-        }else {
+        } else {
             page = Integer.parseInt(mpage);
         }
-         
+
         int start, end;
         start = (page - 1) * numPerPage;
-        
-        
+        if (page * numPerPage > size) {
+            end = size;
+        } else {
+            end = page * numPerPage;
+        }
+
+        List<Booking> arr = db.getBookingByPage(list, start, end);
+
+        request.setAttribute("numPage", numPage);
+        request.setAttribute("page", page);
+        request.setAttribute("arr", arr);
+        request.setAttribute("list", list);
+        request.setAttribute("db", db);
+
+        int income = 0;
+        for (Booking b : list) {
+            income += b.getTotal();
+        }
+        request.setAttribute("income", income);
+
+        request.getRequestDispatcher("income.jsp").forward(request, response);
     }
 
     /**
