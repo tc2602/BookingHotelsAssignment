@@ -22,7 +22,7 @@ import model.Customer;
  *
  * @author Tai Cao
  */
-public class HistoryServllet extends HttpServlet {
+public class HistoryServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
