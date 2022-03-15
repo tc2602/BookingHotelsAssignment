@@ -168,10 +168,10 @@
                                             <input type="hidden" name="type" value="${account.type}">
                                             <input type="hidden" name="cusID" value="${account.cusID}">
                                             <p class="text-muted font-size-sm">Current Password: </p>
-                                            <input type="text" name="oldpass">
+                                            <input type="password" name="oldpass">
                                             <br><br>
                                             <p class="text-muted font-size-sm">New Password: </p>
-                                            <input type="text" name="newpass"><br><br>
+                                            <input type="password" name="newpass"><br><br>
                                             <input type="submit" value="Update">
                                             <c:if test="${successAccount !=null}"><h4 style="display: inline-block;color: green; margin-left: 20px; font-weight: bold">${successAccount}</h4></c:if>
                                             <c:if test="${error !=null}"><h4 style="display: inline-block;color: red; margin-left: 20px; font-weight: bold">${error}</h4></c:if>
