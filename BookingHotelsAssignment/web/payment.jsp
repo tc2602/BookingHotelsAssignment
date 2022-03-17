@@ -222,17 +222,6 @@
                                 <div class="col text-left">Rental fee</div>
                                 <div class="col text-right">${numberDate * homestay.type.price} $</div>
                             </div>
-                            <div class="row lower">
-                                <div class="col text-left">Other service fee</div>
-                                <div class="col text-right">0 $</div>
-                            </div>
-                            <div class="row lower">
-                                <div class="col text-left"><b>Total</b></div>
-                                <div class="col text-right"><b>${numberDate * homestay.type.price} $</b></div>
-                            </div>
-                            <div class="row lower">
-                                <input type="text" value="Enter discount code">
-                            </div>
                             <button class="btn" id="cancel" style="background-color: #209a20"><a href="book?id=${homestay.id}&datefrom=${booking.datefrom}&dateto=${booking.dateto}&people=${booking.people}&total=${numberDate * homestay.type.price}">Payment >></a></button>
                             <button class="btn" id="cancel"><a href="discovery">Cancel</a></button>
                         </div>
