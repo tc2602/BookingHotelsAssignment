@@ -5,7 +5,6 @@
  */
 package dal;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +13,7 @@ import java.util.List;
 import model.Account;
 import model.Booking;
 import model.Customer;
+import model.Facilities;
 import model.Homestay;
 import model.HomestayType;
 
@@ -260,7 +260,7 @@ public class DAO extends DBContext {
             st = connection.prepareStatement(sql);
             rs = st.executeQuery();
             while (rs.next()) {
-                Booking b = new Booking(rs.getInt(1), rs.getInt(2), db.getHomestayById(rs.getInt(3)), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDouble(8));
+                Booking b = new Booking(rs.getInt(1), rs.getInt(2), db.getHomestayById(rs.getInt(3)), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDouble(8), rs.getString(9));
                 list.add(b);
             }
         } catch (SQLException e) {
@@ -276,6 +276,24 @@ public class DAO extends DBContext {
             t.add(list.get(i));
         }
         return t;
+    }
+        //get all Facilities
+    public  List<Facilities> getAllFacilities(){
+        String sql = "select * from Facilities";
+        
+        List<Facilities> list = new ArrayList<>();
+        try {
+            st = connection.prepareStatement(sql);
+            rs = st.executeQuery();
+            while(rs.next()){
+                Facilities fa = new Facilities(rs.getInt(1), rs.getString(2));
+                list.add(fa);
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        
+        return list;
     }
 
     //get account from database by username and password
@@ -359,7 +377,7 @@ public class DAO extends DBContext {
 
     //insert new Booking into database
     public void insertNewBooking(Booking b) {
-        String sql = "insert into Booking values(?,?,?,?,?,?,?)";
+        String sql = "insert into Booking values(?,?,?,?,?,?,?,?)";
         try {
             st = connection.prepareStatement(sql);
             st.setInt(1, b.getCusID());
@@ -369,6 +387,7 @@ public class DAO extends DBContext {
             st.setString(5, b.getDateto());
             st.setInt(6, b.getPeople());
             st.setDouble(7, b.getTotal());
+            st.setString(8, b.getName());
             st.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e);
