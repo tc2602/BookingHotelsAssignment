@@ -183,6 +183,17 @@
                                 <input name="dateto" type="date" value="${booking.dateto}"><br><br> 
                                 <label><i class="fa fa-users" aria-hidden="true"></i> No.of People :</label>
                                 <input name="people" type="number" min="1" max="${homestay.type.capacity}" value="${booking.people}"><br> 
+                                <label><i class="fa fa-users" aria-hidden="true"></i> Facilities :</label> <br>
+                                <input type="checkbox" id="facilities1" name="facilities" value="Bar">
+                                <label for="facilities1"> Bar</label><br>
+                                <input type="checkbox" id="facilities2" name="facilities" value="Spa">
+                                <label for="facilities2">Spa</label><br>
+                                <input type="checkbox" id="facilities3" name="facilities" value="Car Parking">
+                                <label for="facilities3"> Car parking</label><br>
+                                <input type="checkbox" id="facilities4" name="facilities" value="CGV">
+                                <label for="facilities4"> CGV</label><br>
+                                <input type="checkbox" id="facilities5" name="facilities" value="Massage">
+                                <label for="facilities5"> Massage</label><br>
                                 <input class="btn" id="change" type="submit" value="Save changes">
                             </form>
                             <br>
