@@ -17,9 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 import model.Account;
 import model.Booking;
 import model.Customer;
+import model.Facilities;
 import model.Homestay;
 
 /**
@@ -83,13 +85,12 @@ public class BookingServlet extends HttpServlet {
         String dateto = request.getParameter("dateto");
         int people = Integer.parseInt(request.getParameter("people"));
         double total = Double.parseDouble(request.getParameter("total"));
-        String name = request.getParameter("name");
+        String name = request.getParameter("facilities");
 
         Booking book = new Booking(cusid, db.getHomestayById(id), date, datefrom, dateto, people, total, name);
 
         db.insertNewBooking(book);
-
-        response.sendRedirect("discovery");
+        request.getRequestDispatcher("/discovery").forward(request, response);
     }
 
     /**
@@ -120,9 +121,10 @@ public class BookingServlet extends HttpServlet {
             String datefrom = request.getParameter("datefrom");
             String dateto = request.getParameter("dateto");
             int people = Integer.parseInt(request.getParameter("people"));
-            String name = request.getParameter("name");
+            String name = request.getParameter("facilities");
 
             Homestay h = db.getHomestayById(id);
+            List<Customer> list = db.getAllCustomer();
 
             LocalDate start = LocalDate.parse(datefrom);
             LocalDate end = LocalDate.parse(dateto);
@@ -134,6 +136,7 @@ public class BookingServlet extends HttpServlet {
             request.setAttribute("booking", book);
             request.setAttribute("numberDate", diff);
             request.setAttribute("homestay", h);
+            request.setAttribute("list", list);
 
             request.getRequestDispatcher("payment.jsp").forward(request, response);
         } else {
