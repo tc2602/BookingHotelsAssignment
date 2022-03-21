@@ -24,7 +24,7 @@ public class Booking {
     public Booking() {
     }
 
-    public Booking(int cusID, Homestay homestay, String date, String datefrom, String dateto, int people, double total) {
+    public Booking(int cusID, Homestay homestay, String date, String datefrom, String dateto, int people, double total, String name) {
         this.cusID = cusID;
         this.homestay = homestay;
         this.date = date;
@@ -35,7 +35,7 @@ public class Booking {
         this.name = name;
     }
     
-    public Booking(int cusID, Homestay homestay, String date, String datefrom, String dateto, int people) {
+    public Booking(int cusID, Homestay homestay, String date, String datefrom, String dateto, int people, String name) {
         this.cusID = cusID;
         this.homestay = homestay;
         this.date = date;
@@ -45,7 +45,7 @@ public class Booking {
         this.name = name;
     }
 
-    public Booking(int id, int cusID, Homestay homestay, String date, String datefrom, String dateto, int people, double total) {
+    public Booking(int id, int cusID, Homestay homestay, String date, String datefrom, String dateto, int people, double total, String name) {
         this.id = id;
         this.cusID = cusID;
         this.homestay = homestay;

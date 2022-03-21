@@ -83,8 +83,9 @@ public class BookingServlet extends HttpServlet {
         String dateto = request.getParameter("dateto");
         int people = Integer.parseInt(request.getParameter("people"));
         double total = Double.parseDouble(request.getParameter("total"));
+        String name = request.getParameter("name");
 
-        Booking book = new Booking(cusid, db.getHomestayById(id), date, datefrom, dateto, people, total);
+        Booking book = new Booking(cusid, db.getHomestayById(id), date, datefrom, dateto, people, total, name);
 
         db.insertNewBooking(book);
 
@@ -119,6 +120,7 @@ public class BookingServlet extends HttpServlet {
             String datefrom = request.getParameter("datefrom");
             String dateto = request.getParameter("dateto");
             int people = Integer.parseInt(request.getParameter("people"));
+            String name = request.getParameter("name");
 
             Homestay h = db.getHomestayById(id);
 
@@ -127,7 +129,7 @@ public class BookingServlet extends HttpServlet {
             Period age = Period.between(start, end);
             int diff = age.getDays();
 
-            Booking book = new Booking(cusid, db.getHomestayById(id), date, datefrom, dateto, people);
+            Booking book = new Booking(cusid, db.getHomestayById(id), date, datefrom, dateto, people, name);
 
             request.setAttribute("booking", book);
             request.setAttribute("numberDate", diff);

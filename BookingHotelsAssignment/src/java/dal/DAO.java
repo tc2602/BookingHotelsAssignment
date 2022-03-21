@@ -241,7 +241,7 @@ public class DAO extends DBContext {
             st.setInt(1, cusID);
             rs = st.executeQuery();
             while (rs.next()) {
-                Booking b = new Booking(rs.getInt(1), rs.getInt(2), db.getHomestayById(rs.getInt(3)), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDouble(8));
+                Booking b = new Booking(rs.getInt(1), rs.getInt(2), db.getHomestayById(rs.getInt(3)), rs.getString(4), rs.getString(5), rs.getString(6), rs.getInt(7), rs.getDouble(8), rs.getString(9));
                 list.add(b);
             }
         } catch (SQLException e) {
