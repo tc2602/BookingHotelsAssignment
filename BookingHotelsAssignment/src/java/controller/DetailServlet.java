@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Facilities;
 import model.Homestay;
 
 /**
@@ -63,8 +64,11 @@ public class DetailServlet extends HttpServlet {
 
         DAO db = new DAO();
         Homestay h = db.getHomestayById(id);
+        List<Facilities> fa = db.getAllFacilities();
         
         request.setAttribute("homestay", h);
+        request.setAttribute("facilities", fa);
+        
         request.getRequestDispatcher("detail.jsp").forward(request, response);
     }
 
