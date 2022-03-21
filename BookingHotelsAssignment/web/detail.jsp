@@ -121,6 +121,22 @@
                                 <label><i class="fa fa-users" aria-hidden="true"></i> No.of People :</label>
                                 <input name="people" type="number" min="1" max="${h.type.capacity}" value="1" required="">
                             </div>
+                            <div class="col-md-6 form-date-w3-agileits">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <label><i class="fa fa-users" aria-hidden="true"></i> Facilities :</label>
+                                        </td>
+                                    </tr>
+                                    <c:forEach items="${facilities}" var="fa">
+                                        <tr>
+                                            <td style="color: white;">
+                                                <input type="checkbox" id="${fa.name}"  value="${fa.name}"> ${fa.name}
+                                            </td>
+                                        </tr>
+                                </c:forEach>
+                                    </table>
+                            </div>
                             <div class="clearfix"> </div>
                             <div class="make wow shake" data-wow-duration="1s" data-wow-delay=".5s">
                                 <input type="submit" value="Book Now">
