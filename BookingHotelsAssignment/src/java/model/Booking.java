@@ -19,6 +19,7 @@ public class Booking {
     private String dateto;
     private int people;
     private double total;
+    private String name;
 
     public Booking() {
     }
@@ -31,6 +32,7 @@ public class Booking {
         this.dateto = dateto;
         this.people = people;
         this.total = total;
+        this.name = name;
     }
     
     public Booking(int cusID, Homestay homestay, String date, String datefrom, String dateto, int people) {
@@ -40,6 +42,7 @@ public class Booking {
         this.datefrom = datefrom;
         this.dateto = dateto;
         this.people = people;
+        this.name = name;
     }
 
     public Booking(int id, int cusID, Homestay homestay, String date, String datefrom, String dateto, int people, double total) {
@@ -51,6 +54,15 @@ public class Booking {
         this.dateto = dateto;
         this.people = people;
         this.total = total;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getId() {
@@ -119,6 +131,8 @@ public class Booking {
 
     @Override
     public String toString() {
-        return "Booking{" + "id=" + id + ", cusID=" + cusID + ", homestay=" + homestay + ", date=" + date + ", datefrom=" + datefrom + ", dateto=" + dateto + ", people=" + people + ", total=" + total + '}';
+        return "Booking{" + "id=" + id + ", cusID=" + cusID + ", homestay=" + homestay + ", date=" + date + ", datefrom=" + datefrom + ", dateto=" + dateto + ", people=" + people + ", total=" + total + ", name=" + name + '}';
     }
+
+   
 }
